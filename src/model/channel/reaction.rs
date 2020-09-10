@@ -376,7 +376,7 @@ impl ReactionType {
                 id,
                 ref name,
                 ..
-            } => format!("{}:{}", name.as_ref().map_or("", |s| s.as_str()), id),
+            } => name.map_or_else(|| format!("{}", id), |s| format!("{}:{}", s, id)),
             ReactionType::Unicode(ref unicode) => unicode.clone(),
             ReactionType::__Nonexhaustive => unreachable!(),
         }
